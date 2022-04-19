@@ -69,6 +69,27 @@ export default class NotesView {
 
             notesListContainer.insertAdjacentHTML("beforeend", html);
         }
+
+        // add select/delete events
+        notesListContainer.querySelectorAll(".notes__list-item").forEach(noteListItem => {
+            noteListItem.addEventListener("click", () => {
+                this.onNoteSelect(noteListItem.dataset.noteId);
+            });
+
+            noteListItem.addEventListener("dblclick", () => {
+                const doDelete = confirm("Are you sure you want to delete this note?");
+
+                if (doDelete) {
+                    this.onNoteDelete(noteListItem.dataset.noteId);
+                }
+            })
+        })
+
+    }
+
+    updateActiveNote(note) {
+        this.root.querySelector(".notes__title").value = note.title;
+        this.root.querySelector(".notes__body").value = note.body;
     }
 
 }
