@@ -7,6 +7,7 @@ body {
 .notes {
     display: flex;
     height: 100%;
+    background-color: black;
 }
 
 .notes * {
@@ -19,6 +20,7 @@ body {
     overflow-y: auto;
     padding: 1%;
     width: 300px;
+    color: beige;
 }
 
 .notes__add {
@@ -44,9 +46,10 @@ body {
 }
 
 .notes__list-item--selected {
-    background: #eaeaea;
+    background: #2A98E1;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: 500;
+    transition: .6s;
 }
 
 .notes__small-title,
@@ -64,8 +67,8 @@ body {
 }
 
 .notes__small-updated {
-    color: #737070;
-    font-style: italic;
+    color: #ffffff;
+    /* font-style: italic; */
     text-align: right;
     font-size: .6em;
 }
@@ -82,6 +85,8 @@ body {
     border: none;
     outline: none;
     width: 100%;
+    color: beige;
+    background-color: black;
 }
 
 .notes__title {
