@@ -36,7 +36,7 @@ export default class NotesView {
 
         console.log(this._createListItemHTML(300, "Hey", "yeah boggie", new Date()));
 
-        //hide the note preview by default
+        this.updateNotePreviewVisibility(false);
 
     }
 
@@ -55,7 +55,7 @@ export default class NotesView {
             </div>
         </div>
         `;
-    };
+    }
 
     updateNoteList(notes) {
         const notesListContainer = this.root.querySelector(".notes__list");
@@ -82,14 +82,25 @@ export default class NotesView {
                 if (doDelete) {
                     this.onNoteDelete(noteListItem.dataset.noteId);
                 }
-            })
-        })
+            });
+        });
 
     }
 
     updateActiveNote(note) {
         this.root.querySelector(".notes__title").value = note.title;
         this.root.querySelector(".notes__body").value = note.body;
+
+        this.root.querySelectorAll(".notes__list-item").forEach(noteListItem => {
+            noteListItem.classList.remove("notes__list-item--selected");
+        });
+
+        this.root.querySelector(`.notes__list-item[data-note-id="${note.id}"]`).classList.add("notes__list-item--selected");
     }
+
+    updateNotePreviewVisibility(visible) {
+        this.root.querySelector(".notes__preview").style.visibility = visible ? "visible" : "hidden";
+    }
+
 
 }
